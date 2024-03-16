@@ -3,7 +3,7 @@
     {
       "id": 1,
       "nome": "Deus não está morto",
-      "genero": "Drama",
+      "genero": "Realidade",
       "lancamento": 2014,
       "descricao": "Quando o jovem Josh Wheaton entra para a universidade, ele conhece um arrogante professor de filosofia que não acredita em Deus. O aluno reafirma sua fé, e é desafiado pelo professor a provar a existência de Deus.",
       "imagem": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQCb1RvB28eyOKw61M1X-tGIJHNsK4oK7s0PCtHm9ja4qT1ESJc"
@@ -14,7 +14,7 @@
       "genero": "Ficção Científica",
       "lancamento": 1999,
       "descricao": "Um programador de computador é levado para um mundo desconhecido, onde ele descobre sua verdadeira identidade e seu destino épico.",
-      "imagem": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQlkHH1V2hzRWl0eSnhmCZrLWf3VrD7CEHrZX9e7J3sIYxMo8Bo"
+      "imagem": "https://br.web.img2.acsta.net/medias/nmedia/18/91/08/82/20128877.JPG"
     },
     {
       "id": 3,
@@ -22,7 +22,7 @@
       "genero": "Drama",
       "lancamento": 1994,
       "descricao": "A história de vida de Forrest Gump, um homem comum com um QI abaixo da média, que participou involuntariamente de muitos eventos históricos importantes nos Estados Unidos.",
-      "imagem": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHsGOTxSfFz05M6Wdi0P0TRr62bZ80mmnDJEE1ms5YwjZSuOG7"
+      "imagem": "https://upload.wikimedia.org/wikipedia/pt/c/c0/ForrestGumpPoster.jpg"
     },
     {
       "id": 4,
@@ -30,7 +30,7 @@
       "genero": "Crime, Drama",
       "lancamento": 1972,
       "descricao": "A saga de uma família de mafiosos ítalo-americanos liderada por Don Vito Corleone, e os esforços de seu filho para expandir os negócios da família.",
-      "imagem": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4c5AbgYsDQDBkiR4L5oUNmxlUc9yNcVvz2-oxMv4J3BkQXVdS"
+      "imagem": "https://br.web.img3.acsta.net/medias/nmedia/18/90/93/20/20120876.jpg"
     },
     {
       "id": 5,
@@ -38,7 +38,7 @@
       "genero": "Ficção Científica",
       "lancamento": 2014,
       "descricao": "Um grupo de exploradores faz uso de um buraco de minhoca recém-descoberto para superar as limitações de viagem espacial humana e conquistar as vastas distâncias envolvidas em uma viagem interestelar.",
-      "imagem": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQepjVwIuVUc13e5TynqSlyGX1XsqQzHKG0mlUaRxvnM4EoK3bb"
+      "imagem": "https://upload.wikimedia.org/wikipedia/pt/3/3a/Interstellar_Filme.png"
     },
     {
       "id": 6,
@@ -46,7 +46,8 @@
       "genero": "Fantasia, Aventura",
       "lancamento": 2001,
       "descricao": "Um jovem hobbit é encarregado de uma missão para destruir um anel mágico e salvar o mundo da escuridão eterna.",
-      "imagem": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTXvRIfC9tfF4Ej9sb_xhAa2B-R0p2lVz0jR6dKKplkt1_GyYJK"
+      "imagem": "https://m.media-amazon.com/images/M/MV5BN2EyZjM3NzUtNWUzMi00MTgxLWI0NTctMzY4M2VlOTdjZWRiXkEyXkFqcGdeQXVyNDUzOTQ5MjY@._V1_.jpg"
     }
-  ]
+  ],
+  "atualizarFilme": []
 }
