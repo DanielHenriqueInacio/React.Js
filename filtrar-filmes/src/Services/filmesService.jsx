@@ -1,9 +1,10 @@
-import { fetchData } from "../Config/apiConfig";
+import { baseUrl } from "../Config/apiConfig";
 
 export async function getMovies() {
   try {
-    const movies = await fetchData();
-    return movies;
+    const response = await fetch(baseUrl);
+    const data = await response.json();
+    return data;
   } catch (error) {
     throw error;
   }
@@ -11,16 +12,28 @@ export async function getMovies() {
 
 export async function updateMovie(movieId, updatedData) {
   try {
-    const options = {
-      method: 'PATCH',
+    const response = await fetch(`${baseUrl}/${movieId}`, {
+      method: "PATCH",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(updatedData),
-    };
-    const updatedMovie = await fetchData(`*/${movieId}`, options);
-    return updatedMovie
-  } catch(error) {
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function deleteMovie(movieId) {
+  try {
+    const response = await fetch(`${baseUrl}/${movieId}`, {
+      method: "DELETE"
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
     throw error;
   }
 }
