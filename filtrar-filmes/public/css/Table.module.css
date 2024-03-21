@@ -144,8 +144,7 @@ th {
   border: 2px solid rgb(224, 159, 38);
 }
 
-.elementDiv button:hover,
-.elementDiv button:focus {
+.elementDiv button:hover {
   cursor: pointer;
   background: rgb(87, 255, 87);
   border: 2px solid rgb(0, 105, 0);

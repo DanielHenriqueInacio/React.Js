@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../../public/css/Table.module.css";
 import Modal from "./Modal";
-import { getMovies, updateMovie } from "../Services/filmesService";
+import { deleteMovie, getMovies, updateMovie } from "../Services/filmesService";
 
 const Table = () => {
   const [data, setData] = React.useState();
@@ -22,6 +22,7 @@ const Table = () => {
     setSelectedItem(item);
     setModalType(type);
     setModalOpen(true);
+    setFormData({ id: item.id });
   };
 
   const closeModal = () => {
@@ -42,26 +43,40 @@ const Table = () => {
     handleMovie();
   }, []);
 
-  async function handleUpdateMovie(event) {
+  async function handleUpdateMovie(event, movieId) {
     event.preventDefault();
-
     try {
-      const updatedMovie = await updateMovie(formData.id, formData);
-      console.log("Filme Atualizado", updatedMovie);
+      const updatedMovie = formData;
+      const dataUpdate = await updateMovie(updatedMovie.id, updatedMovie);
       const updatedMovies = data.map((movie) =>
-        movie.id === updatedMovie.id ? updatedMovie : movie
+        movie.id === movieId ? { ...movie, ...dataUpdate } : movie
       );
-      console.log("Filme", updatedMovies);
       setData(updatedMovies);
+      setModalOpen(false)
     } catch (error) {
-      console.log("Erro ao atualizar Filmes", error);
+      console.log("Erro ao atualizar Filme", error);
     }
+  }
+
+  async function handleDeleteMovie(movieId) {
+    try {
+    await deleteMovie(movieId)
+    const updatedMovie = data.filter((movie) => movie.id !== movieId);
+    setData(updatedMovie)
+  } catch (error) {
+    console.log("Erro ao apagar Filme", error);
+  }
   }
 
   function handleChange({ target }) {
     const { name, value } = target;
-    const formFields = { ...formData, [name]: value };
+    const image = value.split("\\").pop();
+    const nameImage = name === "imagem" ? image : value;
+    const formFields = { ...formData, [name]: nameImage };
 
+    if (name === "imagem") {
+      handleImageChange(target);
+    }
     setFormData(formFields);
   }
 
@@ -71,7 +86,7 @@ const Table = () => {
     inputFileRef.current.click();
   };
 
-  const handleImageChange = ({ target }) => {
+  const handleImageChange = (target) => {
     const file = target.files[0];
     if (file) {
       const reader = new FileReader();
@@ -175,7 +190,7 @@ const Table = () => {
                           accept="image/*"
                           ref={inputFileRef}
                           style={{ display: "none" }}
-                          onChange={handleImageChange}
+                          onChange={handleChange}
                         />
                         <input
                           type="text"
@@ -201,13 +216,14 @@ const Table = () => {
                             cols="62"
                             rows="5"
                             defaultValue={selectedItem.descricao}
+                            onChange={handleChange}
                           ></textarea>
                           <button>Salvar</button>
                         </div>
                       </form>
                     </Modal>
                   )}
-                  <button className={styles.delete}>
+                  <button onClick={() => handleDeleteMovie(item.id)} className={styles.delete}>
                     <i className="fa-solid fa-trash"></i>
                   </button>
                 </td>
