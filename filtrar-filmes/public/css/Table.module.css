@@ -65,7 +65,7 @@ th {
   font-size: 1.4rem;
 }
 
-.form {
+.formEdit {
   height: 100%;
 }
 
@@ -82,7 +82,7 @@ th {
   cursor: pointer;
 }
 
-.table input {
+.formEdit input {
   width: 40%;
   height: 7%;
   margin-bottom: 6.3vh;
@@ -135,8 +135,8 @@ th {
   transform: translate(-50%, -50%);
 }
 
-.table input:hover,
-.table input:focus,
+.formEdit input:hover,
+.formEdit input:focus,
 .elementDiv textarea:hover,
 .elementDiv textarea:focus {
   background: rgb(255, 235, 184);
@@ -154,4 +154,300 @@ th {
 .elementDiv button:hover::before {
   opacity: 1;
   color: rgb(1, 90, 1);
+}
+
+.filtersBtnRegister {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.filtersBtnRegister button {
+  width: 20%;
+  height: 40px;
+  cursor: pointer;
+  font-family: var(--first);
+  font-size: 1.3rem;
+  font-weight: bold;
+  border-radius: 7px;
+  background: #007bff;
+  color: #fff;
+}
+
+.filtersBtnRegister button:hover {
+  background: rgb(175, 175, 175);
+}
+
+.filtersBtnRegister select {
+  appearance: none;
+  text-align: center;
+  width: 20%;
+  height: 40px;
+  cursor: pointer;
+  background: rgb(239, 239, 239);
+  font-family: var(--first);
+  font-size: 1.1rem;
+  border-radius: 5px;
+  border: solid 2px gray;
+  outline: none;
+}
+
+.btnSearch {
+  width: 25%;
+  height: 40px;
+  background: rgb(239, 239, 239);
+  font-family: var(--first);
+  font-size: 1.3rem;
+  padding: 0 0 0 2%;
+  border-radius: 5px;
+  border: solid 2px gray;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination li {
+  margin: 0 5px;
+  padding: 5px 10px;
+  background: #e6e6e6;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #333;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.pagination li.active {
+  background-color: rgb(135, 135, 135);
+  color: #fff;
+}
+
+.next:hover,
+.previous:hover {
+  background: rgb(135, 135, 135);
+  color: #fff;
+}
+
+.formRegister {
+  height: 100%;
+}
+
+.SelectImg {
+  width: 25%;
+  height: 50%;
+  float: left;
+  margin-left: 10%;
+  box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--first);
+  font-size: 1rem;
+  background-color: #e6e5e5;
+  font-weight: bold;
+}
+
+.SelectImg:hover {
+  cursor: pointer;
+}
+
+.SelectImg a {
+  width: 70%;
+  padding: 5%;
+  cursor: pointer;
+  font-family: var(--first);
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 7px;
+  background-color: #757575;
+  color: #fff;
+  margin-bottom: 30px;
+}
+
+.SelectImg a:hover {
+  background: rgb(175, 175, 175);
+}
+.ImgSelected {
+  width: 25%;
+  height: 50%;
+  float: left;
+  margin-left: 10%;
+  box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+
+.ImgSelected:hover {
+  cursor: pointer;
+}
+
+.inputRegister {
+  width: 40%;
+  height: 7%;
+  margin-bottom: 6.3vh;
+  background: rgb(239, 239, 239);
+  font-family: var(--first);
+  font-size: 1.3rem;
+  padding: 0 0 0 2%;
+  border-radius: 5px;
+  border: solid 2px gray;
+}
+
+.elementDiv {
+  display: flex;
+  padding: 0 10%;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.elementDiv textarea {
+  resize: none;
+  font-family: var(--first);
+  font-size: 1.1rem;
+  border: none;
+  background: rgb(239, 239, 239);
+  border-radius: 5px;
+  padding: 2% 2% 2% 2%;
+  overflow: hidden;
+  border: solid 2px gray;
+}
+
+.btnSearch:hover,
+.btnSearch:focus,
+.inputRegister:hover,
+.inputRegister:focus,
+.elementDiv textarea:hover,
+.elementDiv textarea:focus {
+  background: rgb(255, 235, 184);
+  outline: none;
+  border: 2px solid rgb(224, 159, 38);
+}
+
+.elementDiv button {
+  width: 20%;
+  height: 50px;
+  font-family: var(--first);
+  font-size: 1.3rem;
+  font-weight: bold;
+  border-radius: 7px;
+  background: rgb(255, 193, 78);
+  position: relative;
+}
+
+.elementDiv button::before {
+  content: "\f00c";
+  font-family: "Font Awesome\ 5 Free";
+  font-size: 2rem;
+  opacity: 0;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.elementDiv button:hover {
+  cursor: pointer;
+  background: rgb(87, 255, 87);
+  border: 2px solid rgb(0, 105, 0);
+  color: transparent;
+}
+
+.elementDiv button:hover::before {
+  opacity: 1;
+  color: rgb(1, 90, 1);
+}
+
+.deleteModal {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.deleteModal h3 {
+  font-family: var(--second);
+  font-size: 1.7rem;
+  margin-bottom: 6%;
+  font-weight: bolder;
+}
+
+.divButtons {
+  display: flex;
+  justify-content: space-around;
+}
+
+.buttonYes {
+  width: 28%;
+  height: 40px;
+  font-family: var(--first);
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 5px;
+  background: rgb(239, 239, 239);
+  border: solid 2px gray;
+  position: relative;
+}
+
+.buttonYes::before {
+  content: "\f00c";
+  font-family: "Font Awesome\ 5 Free";
+  font-size: 2rem;
+  opacity: 0;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.buttonYes:hover {
+  cursor: pointer;
+  background: rgb(87, 255, 87);
+  border: 2px solid rgb(0, 105, 0);
+  color: transparent;
+}
+
+.buttonYes:hover::before {
+  opacity: 1;
+  color: rgb(1, 90, 1);
+}
+
+.buttonNo {
+  width: 32%;
+  height: 40px;
+  background: rgb(239, 239, 239);
+  font-family: var(--first);
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 5px;
+  border: solid 2px gray;
+  position: relative;
+}
+
+.buttonNo::before {
+  content: "\f00d";
+  font-family: "Font Awesome\ 5 Free";
+  font-size: 2rem;
+  opacity: 0;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.buttonNo:hover {
+  cursor: pointer;
+  background: rgb(255, 115, 115);
+  border: 2px solid rgb(105, 0, 0);
+  color: transparent;
+}
+
+.buttonNo:hover::before {
+  opacity: 1;
+  color: rgb(90, 1, 1);
 }

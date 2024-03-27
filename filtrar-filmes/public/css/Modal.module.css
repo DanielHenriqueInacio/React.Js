@@ -25,6 +25,18 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+.contentDelete {
+  background: #fefefe;
+  margin: 15% auto;
+  padding: 10px;
+  border: 1px solid #888;
+  width: 50%;
+  height: 20%;
+  max-width: 800px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
 .close {
   color: #aaa;
   float: left;

@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../../public/css/Modal.module.css";
 
-const Modal = ({ id ,isOpen, onClose, children }) => {
+const Modal = ({ buttonId, id ,isOpen, onClose, children }) => {
   if (!isOpen) return null;
 
   function handleCloseOutside(event) {
@@ -12,7 +12,7 @@ const Modal = ({ id ,isOpen, onClose, children }) => {
 
   return (
     <div id={`modal-${id}`} className={styles.modal} onClick={handleCloseOutside}>
-      <div className={styles.content}>
+      <div className={buttonId === 'delete' ? styles.contentDelete : styles.content}>
         <span className={styles.close} onClick={onClose}>
           <i className="fa-solid fa-xmark"></i>
         </span>

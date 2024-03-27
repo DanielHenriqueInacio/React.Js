@@ -10,6 +10,22 @@ export async function getMovies() {
   }
 }
 
+export async function registerMovie(movie) {
+  try {
+    const response = await fetch(baseUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(movie),
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw error;
+  }
+}
+
 export async function updateMovie(movieId, updatedData) {
   try {
     const response = await fetch(`${baseUrl}/${movieId}`, {
@@ -29,7 +45,7 @@ export async function updateMovie(movieId, updatedData) {
 export async function deleteMovie(movieId) {
   try {
     const response = await fetch(`${baseUrl}/${movieId}`, {
-      method: "DELETE"
+      method: "DELETE",
     });
     const data = await response.json();
     return data;
