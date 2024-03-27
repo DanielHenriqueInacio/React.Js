@@ -1,16 +1,23 @@
 import React from "react";
 import styles from "../../public/css/Table.module.css";
 import Modal from "./Modal";
-import { deleteMovie, getMovies, updateMovie } from "../Services/filmesService";
+import {
+  deleteMovie,
+  getMovies,
+  registerMovie,
+  updateMovie,
+} from "../Services/filmesService";
+import ReactPaginate from "react-paginate";
 
 const Table = () => {
-  const [data, setData] = React.useState();
+  const [data, setData] = React.useState([]);
   const [modalOpen, setModalOpen] = React.useState(false);
   const [selectedItem, setSelectedItem] = React.useState(null);
   const [modalType, setModalType] = React.useState(null);
   const [previewImage, setPreviewImage] = React.useState(null);
+  const [currentPage, setCurrentPage] = React.useState(0);
+  const [selectedOption, setSelectedOption] = React.useState("Selecione");
   const [formData, setFormData] = React.useState({
-    id: null,
     nome: "",
     genero: "",
     lancamento: "",
@@ -20,9 +27,9 @@ const Table = () => {
 
   const openModal = (item, type) => {
     setSelectedItem(item);
-    setModalType(type);
+    setModalType(type || "Register");
     setModalOpen(true);
-    setFormData({ id: item.id });
+    setFormData(item.id ? { id: item.id } : "");
   };
 
   const closeModal = () => {
@@ -43,6 +50,20 @@ const Table = () => {
     handleMovie();
   }, []);
 
+  async function handleRegisterMovie(event) {
+    event.preventDefault();
+    try {
+      if (formData) {
+        const newMovie = formData;
+        const dataNewMovie = await registerMovie(newMovie);
+        setData((prevData) => [...prevData, dataNewMovie]);
+        closeModal();
+      }
+    } catch (error) {
+      console.log("Erro ao cadastrar Filme", error);
+    }
+  }
+
   async function handleUpdateMovie(event, movieId) {
     event.preventDefault();
     try {
@@ -52,7 +73,7 @@ const Table = () => {
         movie.id === movieId ? { ...movie, ...dataUpdate } : movie
       );
       setData(updatedMovies);
-      setModalOpen(false)
+      closeModal();
     } catch (error) {
       console.log("Erro ao atualizar Filme", error);
     }
@@ -60,12 +81,14 @@ const Table = () => {
 
   async function handleDeleteMovie(movieId) {
     try {
-    await deleteMovie(movieId)
-    const updatedMovie = data.filter((movie) => movie.id !== movieId);
-    setData(updatedMovie)
-  } catch (error) {
-    console.log("Erro ao apagar Filme", error);
-  }
+      await deleteMovie(movieId);
+      const updatedMovie = data.filter((movie) => movie.id !== movieId);
+      setData(updatedMovie);
+      closeModal();
+      currentPage.onload
+    } catch (error) {
+      console.log("Erro ao apagar Filme", error);
+    }
   }
 
   function handleChange({ target }) {
@@ -73,7 +96,6 @@ const Table = () => {
     const image = value.split("\\").pop();
     const nameImage = name === "imagem" ? image : value;
     const formFields = { ...formData, [name]: nameImage };
-
     if (name === "imagem") {
       handleImageChange(target);
     }
@@ -98,8 +120,133 @@ const Table = () => {
     }
   };
 
+  function handleValueSelect({ target }) {
+    setSelectedOption(target.value);
+  }
+
+  const itemsPerPage = 10;
+
+  function handlePageChange({ selected }) {
+    setCurrentPage(selected);
+    console.log("Valor", selected);
+    console.log("Vindo", currentPage);
+  }
+
+  const startIndex = currentPage * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentData =
+    data && data.length > 0 ? data.slice(startIndex, endIndex) : [];
+
   return (
     <>
+      <div className={styles.filtersBtnRegister}>
+        <input
+          className={styles.btnSearch}
+          type="text"
+          name="procurar"
+          placeholder="Buscar"
+        />
+
+        <select
+          name="select"
+          value={selectedOption}
+          onChange={handleValueSelect}
+        >
+          <option value="valor1">Valor 1</option>
+          <option value="valor2">Valor 2</option>
+          <option value="valor3">Valor 3</option>
+        </select>
+
+        <select
+          name="select"
+          value={selectedOption}
+          onChange={handleValueSelect}
+        >
+          <option value="valor1">Valor 1</option>
+          <option value="valor2">Valor 2</option>
+          <option value="valor3">Valor 3</option>
+        </select>
+
+        <button id="Register" onClick={openModal}>
+          <i className="fa-solid fa-plus"></i> Cadastrar
+        </button>
+        {modalType === "Register" && (
+          <Modal
+            key={selectedItem.id}
+            id={selectedItem.id}
+            isOpen={modalOpen}
+            onClose={closeModal}
+          >
+            <form
+              className={styles.formRegister}
+              onSubmit={handleRegisterMovie}
+            >
+              <h1 className={styles.titleModal}>Informaçoes do Filme</h1>
+              {previewImage ? (
+                <img
+                  className={styles.ImgSelected}
+                  src={previewImage}
+                  alt="Imagem do Filme"
+                  onClick={handleImageClick}
+                />
+              ) : (
+                <span
+                  className={styles.SelectImg}
+                  alt="Imagem do Filme"
+                  onClick={handleImageClick}
+                >
+                  <a>Escolher arquivo</a>
+                  <p>Nenhum arquivo escolhido</p>
+                </span>
+              )}
+
+              <input
+                type="file"
+                name="imagem"
+                accept="image/*"
+                ref={inputFileRef}
+                style={{ display: "none" }}
+                onChange={handleChange}
+              />
+              <input
+                className={styles.inputRegister}
+                type="text"
+                name="nome"
+                defaultValue={selectedItem.nome}
+                onChange={handleChange}
+                placeholder="Nome do Filme"
+              />
+              <input
+                className={styles.inputRegister}
+                type="text"
+                name="genero"
+                defaultValue={selectedItem.genero}
+                onChange={handleChange}
+                placeholder="Genero do Filme"
+              />
+              <input
+                className={styles.inputRegister}
+                type="text"
+                name="lancamento"
+                defaultValue={selectedItem.lancamento}
+                onChange={handleChange}
+                placeholder="Data de lançamento do Filme"
+              />
+              <div className={styles.elementDiv}>
+                <textarea
+                  name="descricao"
+                  cols="62"
+                  rows="5"
+                  defaultValue={selectedItem.descricao}
+                  onChange={handleChange}
+                  placeholder="Descrição do Filme"
+                ></textarea>
+                <button>Salvar</button>
+              </div>
+            </form>
+          </Modal>
+        )}
+      </div>
       <table className={styles.table}>
         <thead>
           <tr>
@@ -111,8 +258,8 @@ const Table = () => {
           </tr>
         </thead>
         <tbody>
-          {data &&
-            data.map((item) => (
+          {currentData &&
+            currentData.map((item) => (
               <tr key={item.id}>
                 <td>{item.id}</td>
                 <td>{item.nome}</td>
@@ -132,6 +279,7 @@ const Table = () => {
                       id={selectedItem.id}
                       isOpen={modalOpen}
                       onClose={closeModal}
+                      buttonId={modalType}
                     >
                       <h1 className={styles.titleModal}>
                         Informaçoes do Filme
@@ -160,9 +308,10 @@ const Table = () => {
                       id={selectedItem.id}
                       isOpen={modalOpen}
                       onClose={closeModal}
+                      buttonId={modalType}
                     >
                       <form
-                        className={styles.form}
+                        className={styles.formEdit}
                         onSubmit={handleUpdateMovie}
                       >
                         <h1 className={styles.titleModal}>
@@ -172,14 +321,14 @@ const Table = () => {
                           <img
                             className={styles.modalImgSelect}
                             src={previewImage}
-                            alt={selectedItem.descricao}
+                            alt="Imagem do Filme"
                             onClick={handleImageClick}
                           />
                         ) : (
                           <img
                             className={styles.modalImgSelect}
                             src={selectedItem.imagem}
-                            alt={selectedItem.descricao}
+                            alt="Imagem do Filme"
                             onClick={handleImageClick}
                           />
                         )}
@@ -223,14 +372,49 @@ const Table = () => {
                       </form>
                     </Modal>
                   )}
-                  <button onClick={() => handleDeleteMovie(item.id)} className={styles.delete}>
+                  <button
+                    id="delete"
+                    onClick={() => openModal(item, "delete")}
+                    className={styles.delete}
+                  >
                     <i className="fa-solid fa-trash"></i>
                   </button>
+                  {selectedItem && modalType === "delete" && (
+                    <Modal
+                      key={selectedItem.id}
+                      id={selectedItem.id}
+                      isOpen={modalOpen}
+                      onClose={closeModal}
+                      buttonId={modalType}
+                    >
+                      <section className={styles.deleteModal}>
+                        <h3>Deseja realmente apagar esse registro ?</h3>
+                        <div className={styles.divButtons}>
+                          <button className={styles.buttonYes} onClick={() => handleDeleteMovie(selectedItem.id)}>Sim, desejo apagar</button>
+                          <button className={styles.buttonNo} onClick={closeModal}>Não, cliquei sem querer</button>
+                        </div>
+                      </section>
+                    </Modal>
+                  )}
                 </td>
               </tr>
             ))}
         </tbody>
       </table>
+
+      <ReactPaginate
+        pageCount={Math.ceil(data.length / itemsPerPage)}
+        onPageChange={handlePageChange}
+        previousLabel={"Anterior"}
+        nextLabel={"Próximo"}
+        breakLabel={"..."}
+        containerClassName={styles.pagination}
+        activeClassName={styles.active}
+        pageClassName={styles.pageItem}
+        previousClassName={styles.previous}
+        nextClassName={styles.next}
+        disabledClassName={styles.disabled}
+      />
     </>
   );
 };

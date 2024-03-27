@@ -2,11 +2,11 @@
   "filmes": [
     {
       "id": "1",
-      "nome": "Deus não está morto",
-      "genero": "Drama",
+      "nome": "God's not dead",
+      "genero": "Realidade",
       "lancamento": "2007",
       "descricao": "Quando o jovem Josh Wheaton entra para a universidade, ele conhece um arrogante professor de filosofia que não acredita em Deus. O aluno reafirma sua fé, e é desafiado pelo professor a provar a existência de Deus.",
-      "imagem": "guaxinin1.jpg"
+      "imagem": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQCb1RvB28eyOKw61M1X-tGIJHNsK4oK7s0PCtHm9ja4qT1ESJc"
     },
     {
       "id": "2",
@@ -46,7 +46,279 @@
       "genero": "Fantasia, Aventura",
       "lancamento": 2001,
       "descricao": "Um jovem hobbit é encarregado de uma missão para destruir um anel mágico e salvar o mundo da escuridão eterna.",
-      "imagem": "https://m.media-amazon.com/images/M/MV5BN2EyZjM3NzUtNWUzMi00MTgxLWI0NTctMzY4M2VlOTdjZWRiXkEyXkFqcGdeQXVyNDUzOTQ5MjY@._V1_.jpg"
+      "imagem": "https://m.media-amazon.com/images/M/MV5BN2EyZjM3NzUtNWUzMi00MTgxLWI0NTctMzY4M2VlOTdjZWRiXkEyXkFqcGdeQXVyNDUzOTQ5MjY@"
+    },
+    {
+      "id": "7",
+      "nome": "Titanic",
+      "genero": "Romance, Drama",
+      "lancamento": 1997,
+      "descricao": "Um jovem casal se apaixona a bordo do navio Titanic, enquanto enfrentam desafios e perigos durante sua jornada.",
+      "imagem": "https://upload.wikimedia.org/wikipedia/pt/2/22/Titanic_poster.jpg"
+    },
+    {
+      "id": "8",
+      "nome": "Avatar",
+      "genero": "Aventura, Fantasia",
+      "lancamento": 2009,
+      "descricao": "Um ex-fuzileiro naval é enviado para Pandora, um planeta alienígena, onde ele se envolve em um conflito entre os habitantes locais e uma empresa de mineração.",
+      "imagem": "https://upload.wikimedia.org/wikipedia/pt/thumb/b/b0/Avatar-Teaser-Poster.jpg/250px-Avatar-Teaser-Poster.jpg"
+    },
+    {
+      "id": "9",
+      "nome": "O Rei Leão",
+      "genero": "Animação, Aventura",
+      "lancamento": 1994,
+      "descricao": "Um jovem leão é destinado a se tornar o rei da selva, mas precisa enfrentar desafios e adversidades ao longo do caminho.",
+      "imagem": "https://lumiere-a.akamaihd.net/v1/images/lion_king_the_2019_la_ih_ptb_1000_x_1440_2baad78d.jpeg?region=0%2C0%2C1000%2C1440"
+    },
+    {
+      "id": "10",
+      "nome": "A Origem",
+      "genero": "Ficção Científica, Suspense",
+      "lancamento": 2010,
+      "descricao": "Um ladrão especializado em extrair informações de mentes durante o sono profundo é contratado para realizar uma tarefa quase impossível: plantar uma ideia na mente de alguém.",
+      "imagem": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNnZtv82Vx6_B8-owIbDwW2oEJBGZhUIQYW8_4lKc9vw&s"
+    },
+    {
+      "id": "11",
+      "nome": "Os Incríveis",
+      "genero": "Animação, Ação",
+      "lancamento": 2004,
+      "descricao": "Uma família de super-heróis tenta levar uma vida normal, mas é forçada a retornar à ação quando um novo vilão ameaça o mundo.",
+      "imagem": "https://br.web.img3.acsta.net/medias/nmedia/18/90/98/38/20123472.jpg"
+    },
+    {
+      "id": "12",
+      "nome": "A Lista de Schindler",
+      "genero": "Drama, História",
+      "lancamento": 1993,
+      "descricao": "A história de Oskar Schindler, um empresário alemão que salvou a vida de mais de mil judeus durante o Holocausto, ao empregá-los em sua fábrica.",
+      "imagem": "https://br.web.img2.acsta.net/pictures/19/04/10/19/44/2904073.jpg"
+    },
+    {
+      "id": "13",
+      "nome": "Jurassic Park",
+      "genero": "Aventura, Ficção Científica",
+      "lancamento": 1993,
+      "descricao": "Um parque temático de dinossauros se torna um pesadelo quando as criaturas escapam de seus confinamentos e começam a causar estragos.",
+      "imagem": "https://imusic.b-cdn.net/images/item/original/882/5053083039882.jpg?jurassic-park-2023-jurassic-park-dvd&class=scaled&v=1431417794"
+    },
+    {
+      "id": "14",
+      "nome": "O Fabuloso Destino de Amélie Poulain",
+      "genero": "Comédia, Romance",
+      "lancamento": 2001,
+      "descricao": "Amélie, uma jovem sonhadora e inocente, decide mudar a vida das pessoas ao seu redor para melhor, enquanto busca a sua própria felicidade.",
+      "imagem": "https://upload.wikimedia.org/wikipedia/pt/a/a0/Le_fabuleux_destin_d%27Am%C3%A9lie_Poulain.jpg"
+    },
+    {
+      "id": "15",
+      "nome": "Pulp Fiction: Tempo de Violência",
+      "genero": "Crime, Drama",
+      "lancamento": 1994,
+      "descricao": "Uma coleção de histórias interligadas sobre crime, violência e redenção em Los Angeles.",
+      "imagem": "https://upload.wikimedia.org/wikipedia/pt/thumb/8/82/Pulp_Fiction_cover.jpg/230px-Pulp_Fiction_cover.jpg"
+    },
+    {
+      "id": "16",
+      "nome": "Star Wars: Episódio IV - Uma Nova Esperança",
+      "genero": "Ficção Científica, Aventura",
+      "lancamento": 1977,
+      "descricao": "Luke Skywalker se junta a um grupo de rebeldes para combater o Império Galáctico e resgatar a Princesa Leia. Nessa jornada, ele descobre sua ligação com a Força e enfrenta o temível Darth Vader.",
+      "imagem": "https://m.media-amazon.com/images/I/612h-jwI+EL._AC_UF1000,1000_QL80_.jpg"
+    },
+    {
+      "id": "17",
+      "nome": "Gladiador",
+      "genero": "Ação, Drama",
+      "lancamento": 2000,
+      "descricao": "Um ex-general romano é forçado a se tornar um gladiador e lutar pela sua vida na arena, enquanto busca vingança contra o imperador que traiu sua família.",
+      "imagem": "https://upload.wikimedia.org/wikipedia/pt/thumb/4/44/GladiadorPoster.jpg/230px-GladiadorPoster.jpg"
+    },
+    {
+      "id": "18",
+      "nome": "E.T. - O Extraterrestre",
+      "genero": "Aventura, Ficção Científica",
+      "lancamento": 1982,
+      "descricao": "Um menino encontra um alienígena amigável e tenta ajudá-lo a voltar para casa enquanto enfrenta autoridades e desafios emocionais.",
+      "imagem": "https://br.web.img3.acsta.net/medias/nmedia/18/95/16/34/20384584.jpg"
+    },
+    {
+      "id": "19",
+      "nome": "Coco",
+      "genero": "Animação, Fantasia",
+      "lancamento": 2017,
+      "descricao": "Um menino aspirante a músico embarca em uma jornada extraordinária para a Terra dos Mortos para descobrir a verdade por trás das proibições musicais de sua família.",
+      "imagem": "https://upload.wikimedia.org/wikipedia/pt/a/ae/Cocofilme.png"
+    },
+    {
+      "id": "20",
+      "nome": "A Viagem de Chihiro",
+      "genero": "Animação, Aventura",
+      "lancamento": 2001,
+      "descricao": "Uma menina se aventura em um mundo mágico repleto de espíritos e criaturas fantásticas enquanto procura uma maneira de salvar seus pais transformados em porcos.",
+      "imagem": "https://br.web.img3.acsta.net/pictures/210/527/21052756_20131024195513383.jpg"
+    },
+    {
+      "id": "21",
+      "nome": "La La Land: Cantando Estações",
+      "genero": "Comédia, Musical",
+      "lancamento": 2016,
+      "descricao": "Um músico e uma aspirante a atriz se apaixonam enquanto buscam sucesso em Los Angeles, enfrentando desafios e escolhas difíceis ao longo do caminho.",
+      "imagem": "https://br.web.img2.acsta.net/pictures/17/01/24/17/13/228823.jpg"
+    },
+    {
+      "id": "22",
+      "nome": "Up: Altas Aventuras",
+      "genero": "Animação, Aventura",
+      "lancamento": 2009,
+      "descricao": "Um velho viúvo embarca em uma aventura épica após amarrar balões em sua casa para voar para a América do Sul, onde ele busca realizar o sonho de sua falecida esposa.",
+      "imagem": "https://br.web.img3.acsta.net/medias/nmedia/18/92/03/73/20176438.jpg"
+    },
+    {
+      "id": "23",
+      "nome": "Hotel Transilvania",
+      "genero": "Animação, Comédia",
+      "lancamento": 2012,
+      "descricao": "No Hotel Transilvânia, o Conde Drácula cria um resort para monstros longe dos humanos, mas tudo muda quando um jovem humano descobre o local e se apaixona pela filha de Drácula.",
+      "imagem": "https://upload.wikimedia.org/wikipedia/pt/b/b8/Hotel_Transylvania.jpg"
+    },
+    {
+      "id": "24",
+      "nome": "O Show de Truman",
+      "genero": "Comédia, Drama",
+      "lancamento": 1998,
+      "descricao": "A vida de um homem é transmitida para o mundo todo como um programa de TV sem que ele saiba, levando-o a questionar a natureza da realidade e sua própria existência.",
+      "imagem": "https://br.web.img3.acsta.net/medias/nmedia/18/93/64/37/20269376.jpg"
+    },
+    {
+      "id": "25",
+      "nome": "A Fantástica Fábrica de Chocolate",
+      "genero": "Aventura, Comédia",
+      "lancamento": 2005,
+      "descricao": "Um garoto sortudo ganha a chance de visitar a misteriosa fábrica de chocolate de Willy Wonka, onde descobre um mundo de maravilhas e desafios.",
+      "imagem": "https://static.wixstatic.com/media/1b65e5_c1a8d89ab08f4c738c5e6addc9a34673~mv2.jpg/v1/fill/w_789,h_1000,al_c,q_85,usm_0.66_1.00_0.01/1b65e5_c1a8d89ab08f4c738c5e6addc9a34673~mv2.jpg"
+    },
+    {
+      "id": "26",
+      "nome": "Soul",
+      "genero": "Animação, Comédia",
+      "lancamento": 2020,
+      "descricao": "Um músico talentoso que perdeu sua paixão pela música é transportado para um lugar místico onde ele precisa descobrir o que realmente significa ter alma.",
+      "imagem": "https://lumiere-a.akamaihd.net/v1/images/poster_66814911.png"
+    },
+    {
+      "id": "27",
+      "nome": "Wall-E",
+      "genero": "Animação, Ficção Científica",
+      "lancamento": 2008,
+      "descricao": "No futuro, um robô compactador de lixo é deixado na Terra para limpá-la, e ele acaba descobrindo algo que pode mudar o destino da humanidade.",
+      "imagem": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXOwN6rWsHSlM0-TnHVciyMvK9xJn4f7FQUCxx5Ksuyw&s"
+    },
+    {
+      "id": "28",
+      "nome": "A Teoria de Tudo",
+      "genero": "Biografia, Drama",
+      "lancamento": 2014,
+      "descricao": "A história inspiradora do renomado físico Stephen Hawking e seu relacionamento com sua primeira esposa, Jane, enquanto ele enfrenta desafios físicos e científicos.",
+      "imagem": "https://upload.wikimedia.org/wikipedia/pt/thumb/3/3f/The_Theory_of_Everything.jpg/250px-The_Theory_of_Everything.jpg"
+    },
+    {
+      "id": "29",
+      "nome": "Cidadão Kane",
+      "genero": "Drama, Mistério",
+      "lancamento": 1941,
+      "descricao": "A ascensão e queda de Charles Foster Kane, um magnata da mídia cuja vida é examinada por meio de diferentes perspectivas.",
+      "imagem": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Citizen_Kane_poster%2C_1941_%28Style_B%2C_unrestored%29.jpg/800px-Citizen_Kane_poster%2C_1941_%28Style_B%2C_unrestored%29.jpg"
+    },
+    {
+      "id": "30",
+      "nome": "Como Treinar seu Dragão",
+      "genero": "Animação, Aventura",
+      "lancamento": 2010,
+      "descricao": "Em um mundo onde vikings e dragões são inimigos, um jovem viking chamado Soluço descobre que os dragões não são tão maus quanto parecem e forma uma amizade especial com um dragão ferido chamado Banguela, desafiando assim as tradições de sua aldeia.",
+      "imagem": "https://upload.wikimedia.org/wikipedia/pt/6/62/How_to_Train_Your_Dragon_%28filme%29_Poster.jpg"
+    },
+    {
+      "id": "31",
+      "nome": "Harry Potter e a Pedra Filosofal",
+      "genero": "Fantasia, Aventura",
+      "lancamento": 2001,
+      "descricao": "Um jovem bruxo descobre seu verdadeiro destino ao ser convidado para estudar em uma escola de magia, onde enfrenta desafios e descobre segredos sobre seu passado.",
+      "imagem": "https://upload.wikimedia.org/wikipedia/pt/1/1d/Harry_Potter_Pedra_Filosofal_2001.jpg"
+    },
+    {
+      "id": "32",
+      "nome": "As Aventuras de Pi",
+      "genero": "Aventura, Drama",
+      "lancamento": 2012,
+      "descricao": "Um jovem indiano sobrevive a um naufrágio e se encontra à deriva no oceano Pacífico com um tigre de Bengala, criando um vínculo improvável de sobrevivência e compreensão.",
+      "imagem": "https://upload.wikimedia.org/wikipedia/pt/5/57/Life_of_Pi_2012_Poster.jpg"
+    },
+    {
+      "id": "33",
+      "nome": "A Bela e a Fera",
+      "genero": "Fantasia, Romance",
+      "lancamento": 1991,
+      "descricao": "Uma jovem inteligente e corajosa se apaixona por uma fera amaldiçoada, desencadeando uma jornada de redenção e amor verdadeiro.",
+      "imagem": "https://br.web.img3.acsta.net/pictures/17/01/09/12/22/442219.jpg"
+    },
+    {
+      "id": "34",
+      "nome": "A Culpa é das Estrelas",
+      "genero": "Drama, Romance",
+      "lancamento": 2014,
+      "descricao": "Dois adolescentes com câncer se apaixonam enquanto enfrentam desafios pessoais e emocionais, explorando a vida e a morte de uma maneira profunda.",
+      "imagem": "https://br.web.img3.acsta.net/pictures/14/01/23/14/12/101764.jpg"
+    },
+    {
+      "id": "35",
+      "nome": "O Discurso do Rei",
+      "genero": "Biografia, Drama",
+      "lancamento": 2010,
+      "descricao": "A história do rei George VI, que supera sua gagueira com a ajuda de um terapeuta não convencional, enquanto enfrenta o desafio de liderar durante a Segunda Guerra Mundial.",
+      "imagem": "https://filosofiaeocinema.files.wordpress.com/2018/08/dis.png?w=640"
+    },
+    {
+      "id": "36",
+      "nome": "Toy Story",
+      "genero": "Animação, Aventura",
+      "lancamento": 1995,
+      "descricao": "Brinquedos ganham vida quando os humanos não estão por perto, levando-os a uma aventura para ajudar um novo brinquedo a se adaptar ao grupo.",
+      "imagem": "https://br.web.img3.acsta.net/medias/nmedia/18/91/05/36/20127436.jpg"
+    },
+    {
+      "id": "37",
+      "nome": "Milagres do Paraíso",
+      "genero": "Drama, Fé",
+      "lancamento": 2016,
+      "descricao": "Baseado em uma história real, o filme segue uma família que enfrenta desafios quando a filha mais nova é diagnosticada com uma doença rara. Eles buscam fé, esperança e milagres em meio às dificuldades.",
+      "imagem": "https://m.media-amazon.com/images/I/51sgD8cPAsL.jpg"
+    },
+    {
+      "id": "38",
+      "nome": "Moulin Rouge: Amor em Vermelho",
+      "genero": "Drama, Musical",
+      "lancamento": 2001,
+      "descricao": "Um poeta se apaixona por uma bela cortesã enquanto ambos enfrentam desafios em um cabaré parisiense durante o período boêmio.",
+      "imagem": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmiooCbRrUss6nJGlypWuJi7rW_kVf8F8dHvOK-U6ouw&s"
+    },
+    {
+      "id": "39",
+      "nome": "Your Name",
+      "genero": "Animação, Drama, Romance",
+      "lancamento": 2016,
+      "descricao": "Dois jovens, um rapaz da cidade e uma garota do campo, começam a trocar de corpo misteriosamente. Eles tentam entender o motivo por trás desse fenômeno enquanto lidam com os desafios de suas vidas.",
+      "imagem": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3YiG0OxWkNESBH1HOtrLH-RJ2TuApO3DED-84FT_0pA&s"
+    },
+    {
+      "id": "40",
+      "nome": "Frozen: Uma Aventura Congelante",
+      "genero": "Animação, Aventura",
+      "lancamento": 2013,
+      "descricao": "Uma princesa busca ajuda de um homem da montanha e sua rena para acabar com uma maldição de inverno eterno lançada por sua irmã, uma rainha com poderes de gelo.",
+      "imagem": "https://upload.wikimedia.org/wikipedia/pt/e/e5/Frozen_2013.png"
     }
   ]
 }
