@@ -16,7 +16,8 @@ const Table = () => {
   const [modalType, setModalType] = React.useState(null);
   const [previewImage, setPreviewImage] = React.useState(null);
   const [currentPage, setCurrentPage] = React.useState(0);
-  const [selectedOption, setSelectedOption] = React.useState("Selecione");
+  const [selectedOption, setSelectedOption] = React.useState();
+  const [filteredMovies, setFilteredMovies] = React.useState([]);
   const [formData, setFormData] = React.useState({
     nome: "",
     genero: "",
@@ -37,6 +38,21 @@ const Table = () => {
     setModalType(null);
     setModalOpen(false);
   };
+
+  React.useEffect(() => {
+    const genderRepeat = {};
+    for (let movie of data) {
+      const catchGender = movie.genero
+        .split(",")
+        .map((genero) => genero.trim());
+      for (let gender of catchGender) {
+        if (!genderRepeat[gender]) {
+          genderRepeat[gender] = true;
+        }
+      }
+    }
+    setSelectedOption(Object.keys(genderRepeat));
+  }, [data]);
 
   React.useEffect(() => {
     async function handleMovie() {
@@ -84,8 +100,14 @@ const Table = () => {
       await deleteMovie(movieId);
       const updatedMovie = data.filter((movie) => movie.id !== movieId);
       setData(updatedMovie);
+
+      const totalPages = Math.ceil(updatedMovie.length / itemsPerPage);
+      if (currentPage >= totalPages) {
+        setCurrentPage(totalPages - 1);
+      }
+
       closeModal();
-      currentPage.onload
+      console.log("Vindo: ", selectedOption);
     } catch (error) {
       console.log("Erro ao apagar Filme", error);
     }
@@ -120,16 +142,24 @@ const Table = () => {
     }
   };
 
-  function handleValueSelect({ target }) {
-    setSelectedOption(target.value);
+  function handleValueGender({ target }) {
+    const selectedGenre = target.value;
+
+    if (!selectedOption.includes(selectedGenre)) {
+      setSelectedOption((prevSelected) => [...prevSelected, selectedGenre]);
+    }
+
+    const moviesByGenre = data.filter((movie) =>
+      movie.genero.toLowerCase().includes(selectedGenre.toLowerCase())
+    );
+
+    setFilteredMovies(moviesByGenre);
   }
 
   const itemsPerPage = 10;
 
   function handlePageChange({ selected }) {
     setCurrentPage(selected);
-    console.log("Valor", selected);
-    console.log("Vindo", currentPage);
   }
 
   const startIndex = currentPage * itemsPerPage;
@@ -148,10 +178,11 @@ const Table = () => {
         />
 
         <select
-          name="select"
-          value={selectedOption}
-          onChange={handleValueSelect}
+        // name="select"
+        // value={selectedOption}
+        // onChange={handleValueSelect}
         >
+          <option>selecione</option>
           <option value="valor1">Valor 1</option>
           <option value="valor2">Valor 2</option>
           <option value="valor3">Valor 3</option>
@@ -159,12 +190,16 @@ const Table = () => {
 
         <select
           name="select"
-          value={selectedOption}
-          onChange={handleValueSelect}
+          value={selectedOption || ""}
+          onChange={handleValueGender}
         >
-          <option value="valor1">Valor 1</option>
-          <option value="valor2">Valor 2</option>
-          <option value="valor3">Valor 3</option>
+          <option value="">selecione</option>
+          {selectedOption &&
+            selectedOption.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
         </select>
 
         <button id="Register" onClick={openModal}>
@@ -258,147 +293,154 @@ const Table = () => {
           </tr>
         </thead>
         <tbody>
-          {currentData &&
-            currentData.map((item) => (
-              <tr key={item.id}>
-                <td>{item.id}</td>
-                <td>{item.nome}</td>
-                <td>{item.genero}</td>
-                <td>{item.lancamento}</td>
-                <td>
-                  <button
-                    id="view"
-                    className={styles.view}
-                    onClick={() => openModal(item, "view")}
+          {filteredMovies.map((item) => (
+            <tr key={item.id}>
+              <td>{item.id}</td>
+              <td>{item.nome}</td>
+              <td>{item.genero}</td>
+              <td>{item.lancamento}</td>
+              <td>
+                <button
+                  id="view"
+                  className={styles.view}
+                  onClick={() => openModal(item, "view")}
+                >
+                  <i className="fa-solid fa-eye"></i>
+                </button>
+                {selectedItem && modalType === "view" && (
+                  <Modal
+                    key={selectedItem.id}
+                    id={selectedItem.id}
+                    isOpen={modalOpen}
+                    onClose={closeModal}
+                    buttonId={modalType}
                   >
-                    <i className="fa-solid fa-eye"></i>
-                  </button>
-                  {selectedItem && modalType === "view" && (
-                    <Modal
-                      key={selectedItem.id}
-                      id={selectedItem.id}
-                      isOpen={modalOpen}
-                      onClose={closeModal}
-                      buttonId={modalType}
+                    <h1 className={styles.titleModal}>Informaçoes do Filme</h1>
+                    <img
+                      className={styles.imgModal}
+                      src={selectedItem.imagem}
+                      alt={selectedItem.descricao}
+                    />
+                    <p>{`Nome: ${selectedItem.nome}`}</p>
+                    <p>{`Genero: ${selectedItem.genero}`}</p>
+                    <p>{`Lançamento: ${selectedItem.lancamento}`}</p>
+                    <p>{`Descrição: ${selectedItem.descricao}`}</p>
+                  </Modal>
+                )}
+                <button
+                  id="edit"
+                  className={styles.edit}
+                  onClick={() => openModal(item, "edit")}
+                >
+                  <i className="fa-solid fa-pencil"></i>
+                </button>
+                {selectedItem && modalType === "edit" && (
+                  <Modal
+                    key={selectedItem.id}
+                    id={selectedItem.id}
+                    isOpen={modalOpen}
+                    onClose={closeModal}
+                    buttonId={modalType}
+                  >
+                    <form
+                      className={styles.formEdit}
+                      onSubmit={handleUpdateMovie}
                     >
                       <h1 className={styles.titleModal}>
                         Informaçoes do Filme
                       </h1>
-                      <img
-                        className={styles.imgModal}
-                        src={selectedItem.imagem}
-                        alt={selectedItem.descricao}
-                      />
-                      <p>{`Nome: ${selectedItem.nome}`}</p>
-                      <p>{`Genero: ${selectedItem.genero}`}</p>
-                      <p>{`Lançamento: ${selectedItem.lancamento}`}</p>
-                      <p>{`Descrição: ${selectedItem.descricao}`}</p>
-                    </Modal>
-                  )}
-                  <button
-                    id="edit"
-                    className={styles.edit}
-                    onClick={() => openModal(item, "edit")}
-                  >
-                    <i className="fa-solid fa-pencil"></i>
-                  </button>
-                  {selectedItem && modalType === "edit" && (
-                    <Modal
-                      key={selectedItem.id}
-                      id={selectedItem.id}
-                      isOpen={modalOpen}
-                      onClose={closeModal}
-                      buttonId={modalType}
-                    >
-                      <form
-                        className={styles.formEdit}
-                        onSubmit={handleUpdateMovie}
-                      >
-                        <h1 className={styles.titleModal}>
-                          Informaçoes do Filme
-                        </h1>
-                        {previewImage ? (
-                          <img
-                            className={styles.modalImgSelect}
-                            src={previewImage}
-                            alt="Imagem do Filme"
-                            onClick={handleImageClick}
-                          />
-                        ) : (
-                          <img
-                            className={styles.modalImgSelect}
-                            src={selectedItem.imagem}
-                            alt="Imagem do Filme"
-                            onClick={handleImageClick}
-                          />
-                        )}
+                      {previewImage ? (
+                        <img
+                          className={styles.modalImgSelect}
+                          src={previewImage}
+                          alt="Imagem do Filme"
+                          onClick={handleImageClick}
+                        />
+                      ) : (
+                        <img
+                          className={styles.modalImgSelect}
+                          src={selectedItem.imagem}
+                          alt="Imagem do Filme"
+                          onClick={handleImageClick}
+                        />
+                      )}
 
-                        <input
-                          type="file"
-                          name="imagem"
-                          accept="image/*"
-                          ref={inputFileRef}
-                          style={{ display: "none" }}
+                      <input
+                        type="file"
+                        name="imagem"
+                        accept="image/*"
+                        ref={inputFileRef}
+                        style={{ display: "none" }}
+                        onChange={handleChange}
+                      />
+                      <input
+                        type="text"
+                        name="nome"
+                        defaultValue={selectedItem.nome}
+                        onChange={handleChange}
+                      />
+                      <input
+                        type="text"
+                        name="genero"
+                        defaultValue={selectedItem.genero}
+                        onChange={handleChange}
+                      />
+                      <input
+                        type="text"
+                        name="lancamento"
+                        defaultValue={selectedItem.lancamento}
+                        onChange={handleChange}
+                      />
+                      <div className={styles.elementDiv}>
+                        <textarea
+                          name="descricao"
+                          cols="62"
+                          rows="5"
+                          defaultValue={selectedItem.descricao}
                           onChange={handleChange}
-                        />
-                        <input
-                          type="text"
-                          name="nome"
-                          defaultValue={selectedItem.nome}
-                          onChange={handleChange}
-                        />
-                        <input
-                          type="text"
-                          name="genero"
-                          defaultValue={selectedItem.genero}
-                          onChange={handleChange}
-                        />
-                        <input
-                          type="text"
-                          name="lancamento"
-                          defaultValue={selectedItem.lancamento}
-                          onChange={handleChange}
-                        />
-                        <div className={styles.elementDiv}>
-                          <textarea
-                            name="descricao"
-                            cols="62"
-                            rows="5"
-                            defaultValue={selectedItem.descricao}
-                            onChange={handleChange}
-                          ></textarea>
-                          <button>Salvar</button>
-                        </div>
-                      </form>
-                    </Modal>
-                  )}
-                  <button
-                    id="delete"
-                    onClick={() => openModal(item, "delete")}
-                    className={styles.delete}
+                        ></textarea>
+                        <button>Salvar</button>
+                      </div>
+                    </form>
+                  </Modal>
+                )}
+                <button
+                  id="delete"
+                  onClick={() => openModal(item, "delete")}
+                  className={styles.delete}
+                >
+                  <i className="fa-solid fa-trash"></i>
+                </button>
+                {selectedItem && modalType === "delete" && (
+                  <Modal
+                    key={selectedItem.id}
+                    id={selectedItem.id}
+                    isOpen={modalOpen}
+                    onClose={closeModal}
+                    buttonId={modalType}
                   >
-                    <i className="fa-solid fa-trash"></i>
-                  </button>
-                  {selectedItem && modalType === "delete" && (
-                    <Modal
-                      key={selectedItem.id}
-                      id={selectedItem.id}
-                      isOpen={modalOpen}
-                      onClose={closeModal}
-                      buttonId={modalType}
-                    >
-                      <section className={styles.deleteModal}>
-                        <h3>Deseja realmente apagar esse registro ?</h3>
-                        <div className={styles.divButtons}>
-                          <button className={styles.buttonYes} onClick={() => handleDeleteMovie(selectedItem.id)}>Sim, desejo apagar</button>
-                          <button className={styles.buttonNo} onClick={closeModal}>Não, cliquei sem querer</button>
-                        </div>
-                      </section>
-                    </Modal>
-                  )}
-                </td>
-              </tr>
-            ))}
+                    <section className={styles.deleteModal}>
+                      <h3>Deseja realmente apagar esse registro ?</h3>
+                      <div className={styles.divButtons}>
+                        <button
+                          className={styles.buttonYes}
+                          onClick={() => handleDeleteMovie(selectedItem.id)}
+                        >
+                          Sim, desejo apagar
+                        </button>
+                        <button
+                          className={styles.buttonNo}
+                          onClick={closeModal}
+                        >
+                          Não, cliquei sem querer
+                        </button>
+                      </div>
+                    </section>
+                  </Modal>
+                )}
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
 

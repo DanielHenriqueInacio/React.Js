@@ -319,6 +319,38 @@
       "lancamento": 2013,
       "descricao": "Uma princesa busca ajuda de um homem da montanha e sua rena para acabar com uma maldição de inverno eterno lançada por sua irmã, uma rainha com poderes de gelo.",
       "imagem": "https://upload.wikimedia.org/wikipedia/pt/e/e5/Frozen_2013.png"
+    },
+    {
+      "id": "41",
+      "nome": "O Discurso do Rei",
+      "genero": "Biografia, Drama",
+      "lancamento": 2010,
+      "descricao": "A história do rei George VI, que supera sua gagueira com a ajuda de um terapeuta não convencional, enquanto enfrenta o desafio de liderar durante a Segunda Guerra Mundial.",
+      "imagem": "https://filosofiaeocinema.files.wordpress.com/2018/08/dis.png?w=640"
+    },
+    {
+      "id": "42",
+      "nome": "Toy Story",
+      "genero": "Animação, Aventura",
+      "lancamento": 1995,
+      "descricao": "Brinquedos ganham vida quando os humanos não estão por perto, levando-os a uma aventura para ajudar um novo brinquedo a se adaptar ao grupo.",
+      "imagem": "https://br.web.img3.acsta.net/medias/nmedia/18/91/05/36/20127436.jpg"
+    },
+    {
+      "id": "43",
+      "nome": "Milagres do Paraíso",
+      "genero": "Drama, Fé",
+      "lancamento": 2016,
+      "descricao": "Baseado em uma história real, o filme segue uma família que enfrenta desafios quando a filha mais nova é diagnosticada com uma doença rara. Eles buscam fé, esperança e milagres em meio às dificuldades.",
+      "imagem": "https://m.media-amazon.com/images/I/51sgD8cPAsL.jpg"
+    },
+    {
+      "id": "44",
+      "nome": "Moulin Rouge: Amor em Vermelho",
+      "genero": "Drama, Musical",
+      "lancamento": 2001,
+      "descricao": "Um poeta se apaixona por uma bela cortesã enquanto ambos enfrentam desafios em um cabaré parisiense durante o período boêmio.",
+      "imagem": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmiooCbRrUss6nJGlypWuJi7rW_kVf8F8dHvOK-U6ouw&s"
     }
   ]
 }
