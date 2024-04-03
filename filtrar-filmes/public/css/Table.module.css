@@ -192,6 +192,9 @@ th {
   border: solid 2px gray;
   outline: none;
 }
+.filtersBtnRegister select:hover{
+  background-color: #ccc;
+}
 
 .btnSearch {
   width: 25%;

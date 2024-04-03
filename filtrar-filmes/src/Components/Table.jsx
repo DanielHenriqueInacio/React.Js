@@ -16,7 +16,14 @@ const Table = () => {
   const [modalType, setModalType] = React.useState(null);
   const [previewImage, setPreviewImage] = React.useState(null);
   const [currentPage, setCurrentPage] = React.useState(0);
-  const [selectedOption, setSelectedOption] = React.useState("Selecione");
+  const [selectedGender, setSelectedGender] = React.useState();
+  const [selectedLaunching, setSelectedLaunching] = React.useState();
+  const [filteredMovies, setFilteredMovies] = React.useState([]);
+  const [filterActive, setFilterActive] = React.useState(false);
+  const [selectedTextGenre, setSelectedTextGenre] = React.useState("selecione");
+  const [selectedTextLaunching, setSelectedTextLaunching] = React.useState("selecione");
+  const [searchMovie, setSearchMovie] = React.useState('');
+
   const [formData, setFormData] = React.useState({
     nome: "",
     genero: "",
@@ -37,6 +44,30 @@ const Table = () => {
     setModalType(null);
     setModalOpen(false);
   };
+
+  React.useEffect(() => {
+    const genderRepeat = {};
+    for (let movie of data) {
+      const catchGender = movie.genero
+        .split(",")
+        .map((genero) => genero.trim());
+      for (let gender of catchGender) {
+        if (!genderRepeat[gender]) {
+          genderRepeat[gender] = true;
+        }
+      }
+    }
+    setSelectedGender(Object.keys(genderRepeat));
+  }, [data]);
+
+  React.useEffect(() => {
+    const launchingRepeat = {};
+    for (let movie of data) {
+      const catchlaunching = movie.lancamento;
+      launchingRepeat[catchlaunching] = true;
+    }
+    setSelectedLaunching(Object.keys(launchingRepeat));
+  }, [data]);
 
   React.useEffect(() => {
     async function handleMovie() {
@@ -84,8 +115,12 @@ const Table = () => {
       await deleteMovie(movieId);
       const updatedMovie = data.filter((movie) => movie.id !== movieId);
       setData(updatedMovie);
+
+      const totalPages = Math.ceil(updatedMovie.length / itemsPerPage);
+      if (currentPage >= totalPages) {
+        setCurrentPage(totalPages - 1);
+      }
       closeModal();
-      currentPage.onload
     } catch (error) {
       console.log("Erro ao apagar Filme", error);
     }
@@ -120,16 +155,10 @@ const Table = () => {
     }
   };
 
-  function handleValueSelect({ target }) {
-    setSelectedOption(target.value);
-  }
-
   const itemsPerPage = 10;
 
   function handlePageChange({ selected }) {
     setCurrentPage(selected);
-    console.log("Valor", selected);
-    console.log("Vindo", currentPage);
   }
 
   const startIndex = currentPage * itemsPerPage;
@@ -137,6 +166,88 @@ const Table = () => {
   const currentData =
     data && data.length > 0 ? data.slice(startIndex, endIndex) : [];
 
+  const currentFilter =
+    filteredMovies && filteredMovies.length > 0
+      ? filteredMovies.slice(startIndex, endIndex)
+      : [];
+
+  const moviesToDisplay = filterActive ? currentFilter : currentData;
+
+  function handleValueGender({ target }) {
+    const selectedGenre = target.value;
+    setSelectedTextGenre(selectedGenre !== "" ? selectedGenre : "selecione");
+    if (!selectedGender.includes(selectedGenre)) {
+      setSelectedGender((prevSelected) => [...prevSelected, selectedGenre]);
+    }
+
+    if (selectedGenre === "todos") {
+      setFilterActive(false);
+      setFilteredMovies([]);
+    } else {
+      if (selectedGenre) {
+        setFilterActive(true);
+        const moviesByGenre = data.filter((movie) =>
+          movie.genero.toLowerCase().includes(selectedGenre.toLowerCase())
+        );
+        setFilteredMovies(moviesByGenre);
+      } else {
+        setFilterActive(false);
+        setFilteredMovies([]);
+      }
+    }
+  }
+
+  function handleLaunched({ target }) {
+    const selectedLaunched = target.value;
+
+    setSelectedTextLaunching(
+      selectedLaunched !== "" ? selectedLaunched : "selecione"
+    );
+
+    if (!selectedLaunching.includes(selectedLaunched)) {
+      setSelectedLaunching((prevSelected) => [
+        ...prevSelected,
+        selectedLaunched,
+      ]);
+    }
+
+    if (selectedLaunched === "todos") {
+      setFilterActive(false);
+      setFilteredMovies([]);
+    } else {
+      if (selectedLaunched) {
+        setFilterActive(true);
+        const moviesByLaunched = data.filter((movie) =>
+          movie.lancamento
+            .toLowerCase()
+            .includes(selectedLaunched.toLowerCase())
+        );
+        setFilteredMovies(moviesByLaunched);
+      } else {
+        setFilterActive(false);
+        setFilteredMovies([]);
+      }
+    }
+  }
+
+  function handleSearchMovie(event) {
+    const valueFilterMovie = event.target.value;
+    setSearchMovie(valueFilterMovie)    
+  }
+
+  function handleKeyEnter(event) {
+    if (event.key === "Enter") {
+      const filteredMovies = data.filter((movie) =>
+        movie.nome.toLowerCase().includes(searchMovie.toLowerCase())
+      );
+      setFilteredMovies(filteredMovies);
+      setFilterActive(true)
+    }
+  }
+
+  const countPage = filterActive
+    ? Math.ceil(filteredMovies.length / itemsPerPage)
+    : Math.ceil(data.length / itemsPerPage);
   return (
     <>
       <div className={styles.filtersBtnRegister}>
@@ -145,26 +256,39 @@ const Table = () => {
           type="text"
           name="procurar"
           placeholder="Buscar"
+          value={searchMovie || ""}
+          onChange={handleSearchMovie}
+          onKeyDown={handleKeyEnter}
         />
 
         <select
-          name="select"
-          value={selectedOption}
-          onChange={handleValueSelect}
+          name="selectLauched"
+          value={selectedLaunching || ""}
+          onChange={handleLaunched}
         >
-          <option value="valor1">Valor 1</option>
-          <option value="valor2">Valor 2</option>
-          <option value="valor3">Valor 3</option>
+          <option value="">{selectedTextLaunching}</option>
+          <option value="todos">Todos</option>
+          {selectedLaunching &&
+            selectedLaunching.map((launching) => (
+              <option key={launching} value={launching}>
+                {launching}
+              </option>
+            ))}
         </select>
 
         <select
-          name="select"
-          value={selectedOption}
-          onChange={handleValueSelect}
+          name="selectGenre"
+          value={selectedGender || ""}
+          onChange={handleValueGender}
         >
-          <option value="valor1">Valor 1</option>
-          <option value="valor2">Valor 2</option>
-          <option value="valor3">Valor 3</option>
+          <option value="">{selectedTextGenre}</option>
+          <option value="todos">Todos</option>
+          {selectedGender &&
+            selectedGender.map((genre) => (
+              <option key={genre} value={genre}>
+                {genre}
+              </option>
+            ))}
         </select>
 
         <button id="Register" onClick={openModal}>
@@ -258,8 +382,8 @@ const Table = () => {
           </tr>
         </thead>
         <tbody>
-          {currentData &&
-            currentData.map((item) => (
+          {moviesToDisplay.length > 0 ? (
+            moviesToDisplay.map((item) => (
               <tr key={item.id}>
                 <td>{item.id}</td>
                 <td>{item.nome}</td>
@@ -390,20 +514,35 @@ const Table = () => {
                       <section className={styles.deleteModal}>
                         <h3>Deseja realmente apagar esse registro ?</h3>
                         <div className={styles.divButtons}>
-                          <button className={styles.buttonYes} onClick={() => handleDeleteMovie(selectedItem.id)}>Sim, desejo apagar</button>
-                          <button className={styles.buttonNo} onClick={closeModal}>Não, cliquei sem querer</button>
+                          <button
+                            className={styles.buttonYes}
+                            onClick={() => handleDeleteMovie(selectedItem.id)}
+                          >
+                            Sim, desejo apagar
+                          </button>
+                          <button
+                            className={styles.buttonNo}
+                            onClick={closeModal}
+                          >
+                            Não, cliquei sem querer
+                          </button>
                         </div>
                       </section>
                     </Modal>
                   )}
                 </td>
               </tr>
-            ))}
+            ))
+          ) : (
+            <tr>
+              <td colSpan="5">Filme, Genero ou Lançamento não encontrado</td>
+            </tr>
+          )}
         </tbody>
       </table>
 
       <ReactPaginate
-        pageCount={Math.ceil(data.length / itemsPerPage)}
+        pageCount={countPage}
         onPageChange={handlePageChange}
         previousLabel={"Anterior"}
         nextLabel={"Próximo"}
