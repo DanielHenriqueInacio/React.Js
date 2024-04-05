@@ -21,8 +21,9 @@ const Table = () => {
   const [filteredMovies, setFilteredMovies] = React.useState([]);
   const [filterActive, setFilterActive] = React.useState(false);
   const [selectedTextGenre, setSelectedTextGenre] = React.useState("selecione");
-  const [selectedTextLaunching, setSelectedTextLaunching] = React.useState("selecione");
-  const [searchMovie, setSearchMovie] = React.useState('');
+  const [selectedTextLaunching, setSelectedTextLaunching] =
+    React.useState("selecione");
+  const [searchMovie, setSearchMovie] = React.useState("");
 
   const [formData, setFormData] = React.useState({
     nome: "",
@@ -89,6 +90,8 @@ const Table = () => {
         const dataNewMovie = await registerMovie(newMovie);
         setData((prevData) => [...prevData, dataNewMovie]);
         closeModal();
+
+        window.location.reload();
       }
     } catch (error) {
       console.log("Erro ao cadastrar Filme", error);
@@ -105,6 +108,9 @@ const Table = () => {
       );
       setData(updatedMovies);
       closeModal();
+
+      const fetchedMovies = await getMovies();
+      setData(fetchedMovies);
     } catch (error) {
       console.log("Erro ao atualizar Filme", error);
     }
@@ -180,7 +186,7 @@ const Table = () => {
       setSelectedGender((prevSelected) => [...prevSelected, selectedGenre]);
     }
 
-    if (selectedGenre === "todos") {
+    if (selectedGenre === "Todos") {
       setFilterActive(false);
       setFilteredMovies([]);
     } else {
@@ -211,7 +217,7 @@ const Table = () => {
       ]);
     }
 
-    if (selectedLaunched === "todos") {
+    if (selectedLaunched === "Todos") {
       setFilterActive(false);
       setFilteredMovies([]);
     } else {
@@ -232,7 +238,7 @@ const Table = () => {
 
   function handleSearchMovie(event) {
     const valueFilterMovie = event.target.value;
-    setSearchMovie(valueFilterMovie)    
+    setSearchMovie(valueFilterMovie);
   }
 
   function handleKeyEnter(event) {
@@ -241,7 +247,7 @@ const Table = () => {
         movie.nome.toLowerCase().includes(searchMovie.toLowerCase())
       );
       setFilteredMovies(filteredMovies);
-      setFilterActive(true)
+      setFilterActive(true);
     }
   }
 
@@ -267,7 +273,7 @@ const Table = () => {
           onChange={handleLaunched}
         >
           <option value="">{selectedTextLaunching}</option>
-          <option value="todos">Todos</option>
+          <option value="Todos">Todos</option>
           {selectedLaunching &&
             selectedLaunching.map((launching) => (
               <option key={launching} value={launching}>
@@ -282,7 +288,7 @@ const Table = () => {
           onChange={handleValueGender}
         >
           <option value="">{selectedTextGenre}</option>
-          <option value="todos">Todos</option>
+          <option value="Todos">Todos</option>
           {selectedGender &&
             selectedGender.map((genre) => (
               <option key={genre} value={genre}>
@@ -382,7 +388,7 @@ const Table = () => {
           </tr>
         </thead>
         <tbody>
-          {moviesToDisplay.length > 0 ? (
+          {moviesToDisplay && moviesToDisplay.length > 0 ? (
             moviesToDisplay.map((item) => (
               <tr key={item.id}>
                 <td>{item.id}</td>
@@ -534,26 +540,32 @@ const Table = () => {
               </tr>
             ))
           ) : (
-            <tr>
-              <td colSpan="5">Filme, Genero ou Lançamento não encontrado</td>
+            <tr style={{ padding: "0 15rem" }}>
+              <td style={{ padding: "1rem 13rem" }} colSpan="5">
+                Filme, Genero ou Lançamento não encontrado
+              </td>
             </tr>
           )}
         </tbody>
       </table>
 
-      <ReactPaginate
-        pageCount={countPage}
-        onPageChange={handlePageChange}
-        previousLabel={"Anterior"}
-        nextLabel={"Próximo"}
-        breakLabel={"..."}
-        containerClassName={styles.pagination}
-        activeClassName={styles.active}
-        pageClassName={styles.pageItem}
-        previousClassName={styles.previous}
-        nextClassName={styles.next}
-        disabledClassName={styles.disabled}
-      />
+      {moviesToDisplay.length > 0 ? (
+        <ReactPaginate
+          pageCount={countPage}
+          onPageChange={handlePageChange}
+          previousLabel={"Anterior"}
+          nextLabel={"Próximo"}
+          breakLabel={"..."}
+          containerClassName={styles.pagination}
+          activeClassName={styles.active}
+          pageClassName={styles.pageItem}
+          previousClassName={styles.previous}
+          nextClassName={styles.next}
+          disabledClassName={styles.disabled}
+        />
+      ) : (
+        ""
+      )}
     </>
   );
 };
