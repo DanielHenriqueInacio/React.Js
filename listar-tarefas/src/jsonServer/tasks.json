@@ -4,41 +4,41 @@
       "id": "1",
       "title": "Criar Página de Login",
       "task": "Desenvolver uma página de login para o aplicativo, com campos para nome de usuário e senha, e opção para redefinir senha.",
-      "status": "Pendente",
-      "date": "",
-      "hour": ""      
+      "status": "Finalizado",
+      "date": "05/03/2024",
+      "hour": "13:00"
     },
     {
       "id": "2",
       "title": "Implementar Autenticação de Usuário",
       "task": "Integrar autenticação de usuário utilizando tokens JWT (JSON Web Tokens) para garantir segurança e acesso restrito às funcionalidades do aplicativo.",
-      "status": "Pendente",
-      "date": "",
-      "hour": ""      
+      "status": "Finalizado",
+      "date": "10/03/2024",
+      "hour": "16:21"
     },
     {
       "id": "3",
-      "title": "Desenvolver Funcionalidade de Upload de Arquivos",
+      "title": "Funcionalidade de Upload de Arquivos",
       "task": "Criar um sistema de upload de arquivos para permitir que os usuários enviem documentos, imagens e outros tipos de mídia para o servidor.",
       "status": "Pendente",
-      "date": "",
-      "hour": ""      
+      "date": "23/03/2024",
+      "hour": "09:15"
     },
     {
       "id": "4",
       "title": "Adicionar Recurso de Notificações Push",
       "task": "Implementar notificações push para enviar alertas e atualizações aos usuários, mantendo-os informados sobre atividades relevantes no aplicativo.",
       "status": "Pendente",
-      "date": "",
-      "hour": ""      
+      "date": "03/04/2024",
+      "hour": "10:45"
     },
     {
       "id": "5",
       "title": "Criar Página de Perfil do Usuário",
       "task": "Desenvolver uma página de perfil para exibir informações do usuário, como nome, foto, biografia e estatísticas relevantes.",
       "status": "Pendente",
-      "date": "",
-      "hour": ""      
+      "date": "12/04/2024",
+      "hour": "14:27"
     }
   ]
 }
