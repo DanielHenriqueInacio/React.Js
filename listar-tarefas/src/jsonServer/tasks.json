@@ -3,7 +3,7 @@
     {
       "id": "1",
       "title": "Criar Página de Login",
-      "task": "Desenvolver uma página de login para o aplicativo, com campos para nome de usuário e senha, e opção para redefinir senha.",
+      "description": "Desenvolver uma página de login para o aplicativo, com campos para nome de usuário e senha, e opção para redefinir senha.",
       "status": "Finalizado",
       "date": "05/03/2024",
       "hour": "13:00"
@@ -11,7 +11,7 @@
     {
       "id": "2",
       "title": "Implementar Autenticação de Usuário",
-      "task": "Integrar autenticação de usuário utilizando tokens JWT (JSON Web Tokens) para garantir segurança e acesso restrito às funcionalidades do aplicativo.",
+      "description": "Integrar autenticação de usuário utilizando tokens JWT (JSON Web Tokens) para garantir segurança e acesso restrito às funcionalidades do aplicativo.",
       "status": "Finalizado",
       "date": "10/03/2024",
       "hour": "16:21"
@@ -19,26 +19,106 @@
     {
       "id": "3",
       "title": "Funcionalidade de Upload de Arquivos",
-      "task": "Criar um sistema de upload de arquivos para permitir que os usuários enviem documentos, imagens e outros tipos de mídia para o servidor.",
-      "status": "Pendente",
+      "description": "Criar um sistema de upload de arquivos para permitir que os usuários enviem documentos, imagens e outros tipos de mídia para o servidor.",
+      "status": "Finalizado",
       "date": "23/03/2024",
       "hour": "09:15"
     },
     {
       "id": "4",
       "title": "Adicionar Recurso de Notificações Push",
-      "task": "Implementar notificações push para enviar alertas e atualizações aos usuários, mantendo-os informados sobre atividades relevantes no aplicativo.",
-      "status": "Pendente",
+      "description": "Implementar notificações push para enviar alertas e atualizações aos usuários, mantendo-os informados sobre atividades relevantes no aplicativo.",
+      "status": "Finalizado",
       "date": "03/04/2024",
       "hour": "10:45"
     },
     {
       "id": "5",
       "title": "Criar Página de Perfil do Usuário",
-      "task": "Desenvolver uma página de perfil para exibir informações do usuário, como nome, foto, biografia e estatísticas relevantes.",
+      "description": "Desenvolver uma página de perfil para exibir informações do usuário, como nome, foto, biografia e estatísticas relevantes.",
       "status": "Pendente",
       "date": "12/04/2024",
       "hour": "14:27"
+    },
+    {
+      "id": "6",
+      "title": "Integrar Sistema de Pagamentos",
+      "description": "Incorporar um sistema de pagamentos para permitir transações financeiras seguras dentro do aplicativo, como compras in-app e assinaturas.",
+      "status": "Pendente",
+      "date": "05/03/2024",
+      "hour": "13:00"
+    },
+    {
+      "id": "7",
+      "title": "Implementar Funcionalidade de Chat",
+      "description": "Desenvolver um sistema de chat em tempo real para que os usuários possam se comunicar entre si, seja em conversas individuais ou em grupos.",
+      "status": "Finalizado",
+      "date": "10/03/2024",
+      "hour": "16:21"
+    },
+    {
+      "id": "8",
+      "title": "Adicionar Compartilhamento em Redes Sociais",
+      "description": "Integre botões de compartilhamento em redes sociais para permitir que os usuários compartilhem conteúdo do aplicativo em plataformas como Facebook, Twitter e LinkedIn.",
+      "status": "Finalizado",
+      "date": "23/03/2024",
+      "hour": "09:15"
+    },
+    {
+      "id": "9",
+      "title": "Criar Sistema de Recomendação de Conteúdo",
+      "description": "Desenvolver um algoritmo de recomendação de conteúdo personalizado, que sugere posts, produtos ou outros elementos com base nos interesses e comportamentos dos usuários.",
+      "status": "Pendente",
+      "date": "03/04/2024",
+      "hour": "10:45"
+    },
+    {
+      "id": "10",
+      "title": "Desenvolver Sistema de Notificações por E-mail",
+      "description": "Implementar um sistema de notificações por e-mail para enviar mensagens automatizadas aos usuários, como confirmações de conta e atualizações importantes.",
+      "status": "Em andamento",
+      "date": "02/04/2024",
+      "hour": "10:45"
+    },
+    {
+      "id": "11",
+      "title": "Criar Página de Configurações de Perfil",
+      "description": "Desenvolver uma página de configurações de perfil para permitir que os usuários atualizem suas informações pessoais, preferências e configurações de privacidade.",
+      "status": "Pendente",
+      "date": "10/04/2024",
+      "hour": "14:30"
+    },
+    {
+      "id": "12",
+      "title": "Implementar Recurso de Comentários",
+      "description": "Adicionar um sistema de comentários para permitir que os usuários deixem feedback e interajam com publicações e conteúdo dentro do aplicativo.",
+      "status": "Pendente",
+      "date": "15/04/2024",
+      "hour": "11:00"
+    },
+    {
+      "id": "13",
+      "title": "Adicionar Funcionalidade de Busca Avançada",
+      "description": "Integrar uma barra de busca avançada para permitir que os usuários encontrem rapidamente conteúdo específico dentro do aplicativo, com filtros e sugestões inteligentes.",
+      "status": "Planejado",
+      "date": "25/04/2024",
+      "hour": "09:00"
+    },
+    {
+      "id": "14",
+      "title": "Desenvolver Integração com API de Mapas",
+      "description": "Implementar integração com uma API de mapas para oferecer recursos de localização aos usuários, como visualização de mapas e busca por endereços.",
+      "status": "Finalizado",
+      "date": "02/05/2024",
+      "hour": "15:00"
+    },
+    {
+      "id": "89e9",
+      "title": "Tomar água",
+      "description": "Pegar garrafinha que está na geladeira com gelo e colocar agua para beber",
+      "status": "Pendente",
+      "date": "15/05/2024",
+      "hour": "00:58:28"
     }
   ]
 }

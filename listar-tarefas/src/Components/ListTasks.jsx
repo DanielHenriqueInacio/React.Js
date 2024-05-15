@@ -6,57 +6,78 @@ import Textarea from "./Form/Textarea";
 import Button from "./Form/Button";
 
 const ListTasks = () => {
-  const { data, handleCheckBox } = useTasks();
-  const [modalOpen, setModalOpen] = React.useState(false);
+  const {
+    data,
+    handleTaskUpdate,
+    handleCheckbox,
+    handleTaskDelete,
+    handleChange,
+    getTaskCounts,
+    modalOpen,
+    openModal,
+    closeModal,
+    loading,
+  } = useTasks();
+  const { filterType } = getTaskCounts();
 
-  const openModal = (taskId) => {
-    setModalOpen(taskId);
-  };
+  console.log("Filtrar Tipo", filterType)
 
-  const closeModal = () => {
-    setModalOpen(null);
-  };
+  const filteredTasks = data.filter((task) => {
+    if (filterType === "") {
+      return true;
+    }
+    return task.status === filterType;
+  });
 
+  console.log("Filtered Tasks", filteredTasks)
+  console.log("DATA", data)
   return (
     <>
       <ol className="flex flex-col items-center rounded-lg bg-gray-200 h-[76%] w-[95%] overflow-y-auto py-5">
-        {data &&
-          data.map((item) => (
+        {filteredTasks &&
+          filteredTasks.map((item) => (
             <li
               key={item.id}
-              className="flex justify-between bg-amber-100 h-[80px] w-[95%] mt-2 rounded"
+              className="flex justify-between bg-amber-100 h-[120px] w-[95%] py-3 my-1 rounded"
             >
               <div className="flex justify-center items-center w-16">
                 <input
                   type="checkbox"
                   id={`checkbox-${item.id}`}
-                  name="check"
+                  name="status"
                   className="cursor-pointer w-5 h-5"
-                  checked={item.status === "Finalizado"}
+                  defaultChecked={item.status === "Finalizado"}
+                  defaultValue={item.status}
                   onChange={({ target }) =>
-                  handleCheckBox(item.id, target.checked)
+                    handleCheckbox(item.id, target.checked)
                   }
                 />
               </div>
+
               <div className="w-3/4">
-                <div className="flex h-8">
-                  <div className="flex items-center w-2/3">
-                    <h2 className="font-josefin font-bold text-lg mt-2">
-                      {item.title}
-                    </h2>
-                  </div>
-                  <div className="flex items-center w-1/3">
-                    <p className="font-josefin text-sm ms-3 mt-2 text-gray-500">
-                      {`Data: ${item.date} | Hora: ${item.hour}`}
-                    </p>
-                  </div>
+                <div className="flex items-center">
+                  <p className="font-josefin text-sm text-gray-500">
+                    {`Data: ${item.date} | Hora: ${item.hour}`}
+                  </p>
                 </div>
+
+                <div className="flex items-center">
+                  <h2 className="font-josefin font-bold text-lg">
+                    {item.title}
+                  </h2>
+                </div>
+
                 <div className="flex items-center h-11">
-                  <p className="font-josefin leading-none">{item.task}</p>
+                  <p className="font-josefin leading-none">
+                    {item.description}
+                  </p>
                 </div>
               </div>
               <div className="flex justify-evenly items-center w-36">
-                <button className="bg-red-500 hover:bg-red-400 h-8 w-8 rounded font-mono font-bold">
+                <button
+                  onClick={() => handleTaskDelete(item.id)}
+                  className="bg-red-500 hover:bg-red-400 h-8 w-8 rounded font-mono font-bold"
+                >
                   <i className="fa-solid fa-trash-can"></i>
                 </button>
                 <button
@@ -66,13 +87,29 @@ const ListTasks = () => {
                   <i className="fa-solid fa-pencil"></i>
                 </button>
                 {modalOpen === item.id && (
-                  <Modal isOpen={true} onClose={closeModal}>
+                  <Modal
+                    key={item.id}
+                    id={item.id}
+                    isOpen={true}
+                    onClose={closeModal}
+                  >
                     <form
                       className="flex flex-col justify-center items-center h-full"
-                      action=""
+                      onSubmit={handleTaskUpdate}
                     >
-                      <Input label="Título" type="text" name="title" />
-                      <Textarea label="Tarefa" name="task" />
+                      <Input
+                        label="Título"
+                        type="text"
+                        name="title"
+                        defaultValue={item.title}
+                        onChange={handleChange}
+                      />
+                      <Textarea
+                        label="Descrição"
+                        name="description"
+                        defaultValue={item.description}
+                        onChange={handleChange}
+                      />
                       <Button>Salvar</Button>
                     </form>
                   </Modal>
