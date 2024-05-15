@@ -10,22 +10,69 @@ export async function getTasks() {
   }
 }
 
+export async function registerTask(title, description) {
+  try {
+    const res = await fetch(baseUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        title,
+        description,
+        status: "Pendente",
+        date: new Date().toLocaleDateString(),
+        hour: new Date().toLocaleTimeString(),
+      }),
+    });
+    const data = await res.json();
+    return data;
+  } catch (e) {
+    throw e;
+  }
+}
+
 export async function updateTaskStatus(taskId, updatedStatus) {
   try {
     const res = await fetch(`${baseUrl}/${taskId}`, {
-      method: 'PATCH',
+      method: "PATCH",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify({status: updatedStatus}),
+      body: JSON.stringify({ status: updatedStatus }),
     });
 
-    if(!res.ok) {
-      throw new Error('Erro ao atualizar tarefa');
-    }
-    
-    return res.json();
+    const data = await res.json();
+    return data;
+  } catch (e) {
+    throw new Error(`Erro ao atualizar status da tarefa: ${e.message}`);
+  }
+}
+
+export async function updateTask(taskId, updatedTask) {
+  try {
+    const res = await fetch(`${baseUrl}/${taskId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedTask),
+    });
+    const data = await res.json();
+    return data;
   } catch (e) {
     throw new Error(`Erro ao atualizar tarefa: ${e.message}`);
+  }
+}
+
+export async function deleteTask(TaskId) {
+  try {
+    const res = await fetch(`${baseUrl}/${TaskId}`, {
+      method: "DELETE",
+    });
+    const data = await res.json();
+    return data;
+  } catch (e) {
+    throw e;
   }
 }

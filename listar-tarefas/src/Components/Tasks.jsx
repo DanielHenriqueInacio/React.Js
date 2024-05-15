@@ -7,17 +7,17 @@ import Textarea from "./Form/Textarea";
 import Button from "./Form/Button";
 
 const Tasks = () => {
-  const { getTaskCounts } = useTasks();
+  const {
+    handleSubmit,
+    getTaskCounts,
+    handleChange,
+    modalOpen,
+    openModal,
+    closeModal,
+    formData,
+    handleFilterChange,
+  } = useTasks();
   const { pendingCount, completedCount, totalCount } = getTaskCounts();
-  const [modalOpen, setModalOpen] = React.useState(false);
-
-  const openModal = () => {
-    setModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setModalOpen(false);
-  };
 
   return (
     <>
@@ -28,10 +28,11 @@ const Tasks = () => {
             name="selectStatus"
             id="statusSelect"
             className="border border-black text-center bg-gray-300 hover:bg-gray-400 rounded font-mono font-bold cursor-pointer"
+            onChange={handleFilterChange}
           >
             <option value="">Total</option>
-            <option value="">Pendentes</option>
-            <option value="">Finalizadas</option>
+            <option value="Pendente">Pendentes</option>
+            <option value="Finalizado">Finalizadas</option>
           </select>
 
           <button
@@ -42,25 +43,45 @@ const Tasks = () => {
             Cadastrar
           </button>
           <Modal isOpen={modalOpen} onClose={closeModal}>
-            <form className="flex flex-col justify-center items-center h-full" action="">
-              <Input label="Título" type="text" name="title"/>
-              <Textarea label="Tarefa" name="task"/>
+            <form
+              className="flex flex-col justify-center items-center h-full"
+              onSubmit={handleSubmit}
+            >
+              <Input
+                label="Título"
+                type="text"
+                name="title"
+                defaultValue={formData.title}
+                onChange={handleChange}
+              />
+              <Textarea
+                label="Tarefa"
+                name="description"
+                defaultValue={formData.description}
+                onChange={handleChange}
+              />
               <Button>Salvar</Button>
             </form>
           </Modal>
         </div>
 
-          <ListTasks />
+        <ListTasks />
 
         <section className="flex justify-around items-center rounded-lg bg-gray-200 h-[8%] w-[95%] mt-3">
           <div>
-            <p className="font-josefin font-bold text-lg">Total: {totalCount}</p>
+            <p className="font-josefin font-bold text-lg">
+              Total: {totalCount}
+            </p>
           </div>
           <div>
-            <p className="font-josefin font-bold text-lg">Pendentes: {pendingCount}</p>
+            <p className="font-josefin font-bold text-lg">
+              Pendentes: {pendingCount}
+            </p>
           </div>
           <div>
-            <p className="font-josefin font-bold text-lg">Finalizadas: {completedCount}</p>
+            <p className="font-josefin font-bold text-lg">
+              Finalizadas: {completedCount}
+            </p>
           </div>
         </section>
       </main>
